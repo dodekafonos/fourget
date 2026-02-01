@@ -2,36 +2,40 @@ import React, { useEffect } from 'react'
 import { Stage, Layer } from 'react-konva'
 import { CardComponent } from './Card'
 import { useGameStore } from '../stores/game-store'
+import { GAME_CONSTANTS } from '../lib/constants'
 
-const BOARD_SIZE = 6
-const CARD_SIZE = 80
-const CARD_MARGIN = 10
+const { BOARD_SIZE, CARD_SIZE, CARD_MARGIN } = GAME_CONSTANTS
 
 export const GameBoard: React.FC = () => {
-  const { state, selectCard, initializeGame } = useGameStore()
+  const { board, initializeGame, gameStatus } = useGameStore()
   
   // Inicializar o jogo quando o componente montar
   useEffect(() => {
-    if (!state) {
+    if (gameStatus === 'idle') {
       initializeGame()
     }
-  }, [state, initializeGame])
+  }, [gameStatus, initializeGame])
+
+  // loading state 
+if (!board || board.length === 0) {
+  return (
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '400px',
+      color: '#666'
+    }}>
+      <div>Carregando tabuleiro...</div>
+    </div>
+  )
+}
   
-  const handleCardClick = (card: any) => {
-    console.log('Card clicked:', card)
-    selectCard(card)
-    
-    // Aqui vamos implementar a lógica de virar carta depois
-  }
-  
-  if (!state) {
-    return <div>Carregando jogo...</div>
-  }
-  
+  // Calcular dimensões
   const boardWidth = BOARD_SIZE * (CARD_SIZE + CARD_MARGIN)
   const boardHeight = BOARD_SIZE * (CARD_SIZE + CARD_MARGIN)
-  const stageWidth = 800
-  const stageHeight = 600
+  const stageWidth = Math.max(800, boardWidth + 100)
+  const stageHeight = Math.max(600, boardHeight + 100)
   
   return (
     <div className="game-board" style={{ 
@@ -44,20 +48,19 @@ export const GameBoard: React.FC = () => {
         width={stageWidth} 
         height={stageHeight}
         style={{ 
-          background: '#1A1A2E',
-          borderRadius: '10px',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          borderRadius: '15px',
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
         }}
       >
         <Layer
           x={(stageWidth - boardWidth) / 2}
           y={(stageHeight - boardHeight) / 2}
         >
-          {state.board.flat().map((card) => (
+          {board.flat().map((card) => (
             <CardComponent
               key={card.id}
               card={card}
-              onClick={() => handleCardClick(card)}
             />
           ))}
         </Layer>
