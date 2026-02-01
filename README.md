@@ -1,135 +1,58 @@
-# Turborepo starter
+# 🎮 FourGet - Memory Meets Strategy
 
-This Turborepo starter is maintained by the Turborepo core team.
+<div align="center">
 
-## Using this example
+![GitHub](https://img.shields.io/badge/license-GPLv3-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6)
+![React](https://img.shields.io/badge/React-18-61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-24-339933)
 
-Run the following command:
+**Um jogo híbrido que combina memória com estratégia espacial**
 
-```sh
-npx create-turbo@latest
-```
+[✨ Demonstração](#) | [📋 Regras](#regras) | [🚀 Começando](#começando) | [🎯 Roadmap](#roadmap)
 
-## What's inside?
+</div>
 
-This Turborepo includes the following packages/apps:
+## 🎯 Sobre o Jogo
 
-### Apps and Packages
+FourGet é um jogo que mescla mecânicas do **Jogo da Memória** com **Quatro em Linha (Connect Four)**. Dois jogadores competem para encontrar pares de cartas e estrategicamente posicioná-las para formar sequências de 4.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### 🎮 Regras do Jogo
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. **Tabuleiro 6x6** com 36 cartas viradas para baixo (18 pares de emojis)
+2. **Por turnos**, cada jogador vira duas cartas
+3. **Se as cartas forem diferentes**: viram novamente após 2 segundos
+4. **Se forem iguais**: o jogador escolhe uma para colorir com sua cor (Amarelo/Azul)
+5. **Objetivo principal**: Formar 4 cartas da sua cor em linha (horizontal, vertical ou diagonal)
+6. **Objetivo secundário**: Se todas cartas forem viradas, vence quem tiver mais pares
 
-### Utilities
+### ✨ Features Implementadas (MVP Local)
 
-This Turborepo has some additional tools already setup for you:
+✅ **Core do jogo funcionando**  
+✅ **Sistema de cartas com emojis** 🐶🐱🐭  
+✅ **Lógica completa de flip com timer**  
+✅ **Detecção automática de pares**  
+✅ **Pontuação por pares encontrados**  
+✅ **Alternância inteligente de turnos**  
+✅ **UI responsiva com Konva Canvas**  
+✅ **Store centralizada com Zustand**  
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## 🚀 Começando
 
-### Build
+### 📋 Pré-requisitos
 
-To build all apps and packages, run the following command:
+- Node.js 20+ e npm/yarn/pnpm
+- Git
 
-```
-cd my-turborepo
+### ⚡ Instalação Rápida
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/fourget.git
+cd fourget
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+# Instale as dependências
+npm install
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+# Inicie o servidor de desenvolvimento
+npm run dev
